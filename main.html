@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <!-- Bootstrap CSS -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+            integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.0/dist/bootstrap-table.min.css" />
+        <script
+            src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"
+            integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://unpkg.com/bootstrap-table@1.21.0/dist/bootstrap-table.min.js"></script>
+        <title>Jellycat Little / Wee Collection</title>
+        <style>
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                }
+            }
+            .themed-grid-col {
+                padding-top: 15px;
+                padding-bottom: 15px;
+                background-color: rgba(86, 61, 124, 0.15);
+                border: 1px solid rgba(86, 61, 124, 0.2);
+            }
+        </style>
+    </head>
+    <body>
+        <main role="main">
+            <div class="jumbotron">
+                <div class="col-sm-8 mx-auto">
+                    <h1>Jellycat Little / Wee Collection</h1>
+    
+                    <div class="tab-content" id="modeTabControl">                      
+                        <div class="tab-pane fade show active" id="heads" role="tabpanel" aria-labelledby="heads-tab">
+                            <div class="table-responsive">
+                                <table
+                                    class="table table-striped table-hover"
+                                    id="jelly-table"
+                                    data-sortable="true"
+                                    data-sort-name="Released"
+                                    data-search="true"
+                                    data-show-columns="true"
+                                    data-show-pagination-switch="true"
+                                    data-show-fullscreen="true"
+                                >
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" data-field="PicName" data-formatter="imgFormatter" data-sortable="false">Image</th>
+                                            <th scope="col" data-field="Id" data-sortable="true">Internal ID</th>
+                                            <th scope="col" data-field="Name" data-sortable="true">Name</th>
+                                            <th scope="col" data-field="Released" data-sortable="true">Released</th>
+                                            <th scope="col" data-field="Retired" data-sortable="true">Retired</th>
+                                            <th scope="col" data-field="Collected" data-sortable="true" data-visible="false">Collected</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script>
+            const get_image_tag = (img, alt, extra = "") => {
+                return `<picture>
+                        <source type="image/png" srcset="${img}" ${extra}>
+                        <img src="${img}" alt="${alt}" ${extra}>
+                    </picture>`
+            }
+
+            const format_img = (base_url, value, width) =>
+                get_image_tag(`${base_url}${value}.jpg`, "", `width="${width}"`)
+
+            var imgFormatter = value => `<center>${format_img("Img/", value, 96)}</center>`
+
+            function load_gear_into_table(ref_table) {
+                const geardata = [
+                    {Id: "L3B", PicName: "L3B", Name: "Little Bunny", Released: "2020-01", Retired: "", Collected: "Yes"},
+                    {Id: "L3BE", PicName: "L3BE", Name: "Little Bear", Released: "2020-07", Retired: "", Collected: "Yes"},
+                    {Id: "L3C", PicName: "L3C", Name: "Little Chick", Released: "2020-01", Retired: "2020", Collected: "Yes"},
+                    {Id: "L3F", PicName: "L3F", Name: "Little Fox", Released: "2020-07", Retired: "", Collected: "Yes"},
+                    {Id: "L3FR", PicName: "L3FR", Name: "Little Frog", Released: "2022-02", Retired: "", Collected: "Yes"},
+                    {Id: "L3K", PicName: "L3K", Name: "Little Kitten", Released: "2021-02", Retired: "", Collected: "Yes"},
+                    {Id: "L3L", PicName: "L3L", Name: "Little Lamb", Released: "2020-01", Retired: "", Collected: "Yes"},
+                    {Id: "L3M", PicName: "L3M", Name: "Little Monkey", Released: "2023-01", Retired: "", Collected: "Yes"},
+                    {Id: "L3MO", PicName: "L3MO", Name: "Little Mouse", Released: "2023-01", Retired: "", Collected: "Yes"},
+                    {Id: "L3P", PicName: "L3P", Name: "Little Pig", Released: "2020-01", Retired: "", Collected: "Yes"},
+                    {Id: "L3PB", PicName: "L3PB", Name: "Little Polar Bear", Released: "2021-04", Retired: "2023", Collected: "Yes"},
+                    {Id: "L3PD", PicName: "L3PD", Name: "Little Panda", Released: "2021-07", Retired: "", Collected: "Yes"},
+                    {Id: "L3PEN", PicName: "L3PEN", Name: "Little Penguin", Released: "2021-04", Retired: "2023", Collected: "Yes"},
+                    {Id: "L3PU", PicName: "L3PU", Name: "Little Pup", Released: "2021-02", Retired: "", Collected: "Yes"},
+                    {Id: "L3ROO", PicName: "L3ROO", Name: "Little Rooster", Released: "2022-02", Retired: "2022", Collected: "Yes"},
+                    {Id: "L3T", PicName: "L3T", Name: "Little Tiger", Released: "2022-07", Retired: "", Collected: "Yes"},
+                    {Id: "L3U", PicName: "L3U", Name: "Little Unicorn", Released: "2021-08", Retired: "2023", Collected: "Yes"},
+                    {Id: "LH4T", PicName: "LH4T", Name: "Little Hedgehog", Released: "2018-02", Retired: "2020", Collected: "Yes"},
+                    {Id: "LO4T", PicName: "LO4T", Name: "Little Owl", Released: "2017-11", Retired: "2022", Collected: "Yes"},
+                    {Id: "LP4T", PicName: "LP4T", Name: "Little Penguin", Released: "2017-11", Retired: "2022", Collected: "No"},
+                    {Id: "RL6O", PicName: "RL6O", Name: "Really Little Owl", Released: "2017-11", Retired: "2022", Collected: "No"},
+                    {Id: "RL6P", PicName: "LP4T_3", Name: "Really Little Penguin", Released: "2017-11", Retired: "2022", Collected: "No"},
+                    {Id: "WEE6B", PicName: "WEE6B", Name: "Wee Bear", Released: "2022-07", Retired: "", Collected: "Yes"},
+                    {Id: "WEE6F", PicName: "WEE6F", Name: "Wee Fox", Released: "2022-07", Retired: "", Collected: "Yes"},
+                    {Id: "WEE6L", PicName: "WEE6L", Name: "Wee Lamb", Released: "2023-01", Retired: "", Collected: "Yes"},
+                    {Id: "WEE6O", PicName: "WEE6O", Name: "Wee Owl", Released: "2022-07", Retired: "", Collected: "Yes"},
+                    {Id: "WEE6P", PicName: "WEE6P", Name: "Wee Penguin", Released: "2021-04", Retired: "", Collected: "Yes"},
+                    {Id: "WEE6PB", PicName: "WEE6PB", Name: "Wee Polar Bear", Released: "2021-04", Retired: "", Collected: "Yes"},
+                    {Id: "WEE6PG", PicName: "WEE6PG", Name: "Wee Pig", Released: "2023-01", Retired: "", Collected: "Yes"}
+                ]
+   
+                $(ref_table).bootstrapTable("refreshOptions", { data: geardata })
+            }
+            
+            function load_gear() {
+                load_gear_into_table("#jelly-table")
+            }
+
+            $(function () {
+                $("#jelly-table").bootstrapTable({})
+            })
+
+            $( document ).ready(function(){
+                load_gear()
+            })
+
+        </script>
+    </body>
+</html>
